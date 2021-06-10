@@ -91,11 +91,3 @@ function getImgsForDisplay(){
 }
 
 
-// function saveMeme(meme){
-//     gSavedMemes.push(meme);
-//     saveToStorage('SavedMemes' , gSavedMemes);
-// }
-
-
-
-

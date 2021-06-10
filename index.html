@@ -13,7 +13,7 @@
     <header class="main-header flex space-between">
         <div class="main-header-logo">MEMEoTRON</div>
         <nav class="nav-bar flex">
-            <div data-trans="gallery" class="link"><a href="#" onclick="showGallery()">Gallery</a></div>
+            <div data-trans="gallery" class="link" onclick="showGallery()"><a href="#">Gallery</a></div>
             <div data-trans="lang" class="link" onclick="onSetLang()"><a href="#">עברית</a></div>
         </nav>
     </header>
@@ -41,11 +41,11 @@
 
     <div class="editor-view hide">
         <div class="canvas-container">
-            <canvas id="my-canvas" height="100" width="100" onclick="console.log(event)"></canvas>
+            <canvas id="my-canvas" height="100" width="100" onclick="getPosition(event)"></canvas>
         </div>
         <div class="edit-tools-container flex space-between column">
             <div class="add-text-container editor-layout flex column">
-                <input type="text" class="add-text-input" data-trans="add-text-here" placeholder="Add Text Here">
+                <input type="text" class="add-text-input" data-trans="add-text-here" oninput="updateText()" placeholder="Add Text Here">
                 <div class="tools-btn-container flex space-between">
                     <button class="tools-btn switch-focus-btn" onclick="onSwitchText()"><img
                             src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
@@ -66,16 +66,16 @@
                         src="ICONS/center-text-alignment.png" alt=""></button>
                 <button class="adjust-btn text-right" onclick="onAlignText('left')"><img src="ICONS/align-to-right.png"
                         alt=""></button>
-                <button class="adjust-btn text-up" onclick="onTextMove(1)">Down</button>
-                <button class="adjust-btn text-down" onclick="onTextMove(-1)">Up</button>
+                <button class="adjust-btn text-up" onclick="onTextMove(1)"><img src="ICONS/down-arrow.png" alt=""></button>
+                <button class="adjust-btn text-down" onclick="onTextMove(-1)"><img src="ICONS/up-arrow.png" alt=""></button>
                 <select name="font-select" id="" class="font-selector" onchange="onFontFamilyChange(this.value)">
                     <option>impact</option>
                     <option>Gill Sans</option>
                     <option>Courier New</option>
                 </select>
-                <button class="adjust-btn text-style" onclick="onSaveMeme()"><img src="ICONS/save-icon.svg"
-                        alt=""></button>
-                <button class="adjust-btn text-color"><img src="ICONS/paint-board-and-brush.png" alt=""></button>
+                <!-- <button class="adjust-btn text-style" onclick="onSaveMeme()"><img src="ICONS/save-icon.svg"
+                        alt=""></button> -->
+                <!-- <button class="adjust-btn text-color"><img src="ICONS/paint-board-and-brush.png" alt=""></button> -->
             </div>
             <div class="publish-btns editor-layout flex space-between">
                 <form action="" onsubmit="uploadImg(this, event)" class="publish-form flex space-evenly">
@@ -102,7 +102,6 @@
 
 
     <script src="js/i18n-service.js"></script>
-    <script src="js/utils-service.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/upload-service.js"></script>
     <script src="js/meme-service.js"></script>

@@ -26,6 +26,7 @@ body {
     text-align: center;
 }
 
+
 a {
     text-decoration: none;
     color: white;
@@ -69,12 +70,14 @@ button:hover {
 }
 .link {
     padding: 9.5px 21.5px;
+    border-radius: 2em;
+    transition: background-color .2s;
 }
 
 .link:hover {
     background-color: white;
-    border-radius: 2em;
     color: black;
+    cursor: pointer;
 }
 
 .link:hover a {
@@ -92,6 +95,9 @@ button:hover {
     margin: 15px;
     padding: 0 30px;
     align-items: center;
+    border : 2px solid #20AC91;
+    flex-shrink: 10;
+    min-width: 200px;
 }
 
 .search-input {
@@ -102,17 +108,6 @@ button:hover {
     width: 100%;
 }
 
-.search-input:focus-visible {
-    outline: none;
-}
-
-.search-input-container {
-    border : 2px solid #20AC91;
-    flex-shrink: 10;
-    min-width: 200px;
-}
-
-
 .search-btn {
     height: 50px;
     width: 50px;
@@ -121,6 +116,10 @@ button:hover {
     border-radius: 2em;
     padding: 0 10px;
     transition: background-color .3s;
+}
+
+.search-input:focus-visible {
+    outline: none;
 }
 
 .search-btn:hover {
@@ -324,12 +323,9 @@ button:hover {
     font-family: poppins-medium;
     flex-basis: 48%;
     height: 55px;
-    border-radius: 1.5em;
+    border-radius: .7em;
     transition: background-color .2s;
-}
-
-.publish-btns button:hover {
-    background-color: rgb(131, 129, 129);
+    border: none;
 }
 
 .share-container {
@@ -337,6 +333,27 @@ button:hover {
     background-color: #4267b2;
 }
 
+.share-btn {
+    background-color: #1E7CD3;
+    -webkit-box-shadow: inset 0px -4px 0px 0px #1760a5; 
+    box-shadow: inset 0px -4px 0px 0px #1760a5;
+}
+
+.share-btn:hover {
+    background-color: #155794;
+    color: white;
+}
+
+.download-btn {
+    background-color: #8F44BB;
+    -webkit-box-shadow: inset 0px -4px 0px 0px #6b328b; 
+    box-shadow: inset 0px -4px 0px 0px #6b328b;
+}
+
+.download-btn:hover {
+    background-color: #5f2d7c;
+    color: white;
+}
 /* LAYOUTS */
 
 .editor-layout{
@@ -468,6 +485,16 @@ button:hover {
         height: 45px;
         padding: 5px;
     }
+
+    .link{
+        padding: 0px;
+        margin: 5px;
+        margin-inline-end: 0;
+    }
+
+    .link a {
+        padding: 5px 11px;
+    }
 }
 
 @media (max-width:520px) {
@@ -490,12 +517,6 @@ button:hover {
     .tools-btn-container {
         margin: 8px auto;
     }
-
-    .link{
-        padding: 5px;
-        margin: 10;
-    }
-
     .adjust-tools-container{
         padding: 10px;
     }
@@ -517,7 +538,6 @@ button:hover {
         grid-row-gap: 25px;
         grid-column-gap: 25px;
     }
-
 }
 
 @media (max-width:400px) {
