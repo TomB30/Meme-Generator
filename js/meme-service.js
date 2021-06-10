@@ -41,6 +41,7 @@ function createLine(txt,font = 'impact' ,align = 'center', color = 'black', widt
         width,
         posX,
         posY,
+        isGrab : false
     }
     gMeme.lines.push(line);
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
