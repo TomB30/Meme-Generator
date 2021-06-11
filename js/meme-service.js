@@ -29,7 +29,7 @@ var gMeme = {
     lines: []
 }
 var gFilter = '';
-var gSavedMemes = []
+var gSavedMemes;
 
 function createLine(txt,font = 'impact' ,align = 'center', color = 'black', width, posX, posY) {
     var line = {
@@ -91,17 +91,24 @@ function getImgsForDisplay(){
     return imgs
 }
 
-// ___________________________________________________________________________________
+// DRAG & DROP //
 
 function moveText(dx, dy) {
     gMeme.lines[gCurrUpdatingIdx].posX += dx
     gMeme.lines[gCurrUpdatingIdx].posY += dy
-    
-    // gMeme.lines[gCurrUpdatingIdx].posX -= gMeme.line[gCurrUpdatingIdx].width/2
-    // gMeme.lines[gCurrUpdatingIdx].posY += dy
-
 }
 
 function setTextGrab(isGrab){
     gMeme.lines[gCurrUpdatingIdx].isGrab = isGrab;
+}
+
+// SAVE MEMES //
+
+function saveMemes(){
+    saveToStorage('SavedMemes' , gSavedMemes);
+}
+
+function loadMemes(){
+    gSavedMemes = loadFromStorage('SavedMemes');
+    if(!gSavedMemes) gSavedMemes = [];
 }

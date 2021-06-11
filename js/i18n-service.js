@@ -3,6 +3,10 @@ gTrans = {
         en : 'Gallery',
         he : 'גלריה'
     },
+    'memes' : {
+        en : 'Memes',
+        he : 'ממים'
+    },
     'lang' : {
         en : 'עברית',
         he : 'English' 

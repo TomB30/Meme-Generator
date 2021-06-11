@@ -24,6 +24,7 @@ body {
     font-size: 1.375rem;
     background-color: #22252C;
     text-align: center;
+    overflow-y: hidden;
 }
 
 
@@ -44,6 +45,48 @@ button:hover {
 .rtl {
     direction: rtl;
 }
+
+.bg-screen {
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(41, 39, 39, 0.808);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bg-screen.show{
+    opacity: 1;
+    pointer-events: all;
+}
+
+::-webkit-scrollbar {
+    width: 34px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #22252C; 
+    border:10px solid #383B42;
+    margin: 10px 0px;
+    border-radius: 1em;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #1AA69D;
+    border-left:10px solid #383B42;
+    border-right:10px solid #383B42;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1aa68f; 
+
+  }
 /* HEADER */
 
 .main-header {
@@ -84,6 +127,20 @@ button:hover {
     color : #30BB73;
 }
 
+.menu-btn {
+    height: 40px;
+    width: 40px;
+    margin-right: 10px ;
+    border:none;
+    border-radius: 5px;
+    transition: background-color .2s;
+    display: none;
+    z-index: 2;
+}
+
+.menu-btn:hover {
+    background-color: rgb(139, 139, 139);
+}
 
 /* CONTENT - GALLERY VIEW */
 
@@ -135,16 +192,18 @@ button:hover {
     cursor: pointer;
 }
 
-.gallery-view {
+.gallery-view , .memes-view{
     background-color: #383B42;
     width: 98%;
     border-radius: 8px;
     margin: 20px auto;
     padding: 10px;
+    height: calc(100vh - 100px);
 }
 
 .img-gallery-container {
     padding: 20px;
+    height: 100%;
 }
 
 .img-gallery {
@@ -154,7 +213,10 @@ button:hover {
     grid-template-rows: repeat(auto-fit , 176px);
     grid-row-gap: 25px ;
     grid-column-gap: 29px ;
+    height: 91%;
     margin: auto;
+    overflow-y: scroll;
+    padding-top:15px;
 }
 
 .img-gallery img {
@@ -354,6 +416,27 @@ button:hover {
     background-color: #5f2d7c;
     color: white;
 }
+
+/* MEMES VIEW */
+
+.img-gallery-container.memes{
+    padding: 1px;
+}
+
+.memes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(300px , 1fr));
+    grid-column-gap: 15px;
+    grid-row-gap: 10px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.meme img {
+    border-radius: 1em;
+}
+
+
 /* LAYOUTS */
 
 .editor-layout{
@@ -495,9 +578,52 @@ button:hover {
     .link a {
         padding: 5px 11px;
     }
+    .nav-bar {
+        margin-inline-end: 0px;
+    }
 }
 
-@media (max-width:520px) {
+@media (max-width:540px) {
+
+    .main-header{
+        border-radius:0px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-bar {
+        flex-direction: column;
+        position: fixed;
+        top:74px;
+        right: 0px;
+        transform: translateX(100%);
+        transition: transform .3s;
+        background-color: #139eabde;
+        z-index: 2;
+    }
+    .nav-bar .link {
+        padding: 30px 30px;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .nav-bar .link:hover {
+        padding: 30px 30px;
+        background-color: #18bbcade;
+    }
+
+    .link:hover a {
+        color: white;
+    }
+
+
+    .nav-bar.show{
+        transform: translateX(0);
+    }
+
+
     .canvas-container , .edit-tools-container {
         width: 400px;
         height: 400px;
@@ -525,27 +651,45 @@ button:hover {
     .main-header-logo {
         margin-inline-start: 20px;
     }
-    .nav-bar {
-        margin-inline-end: 0px;
-    }
 
     .img-gallery-container {
         padding: 0;
     }
     .img-gallery{
-        grid-template-columns: repeat(auto-fit , 150px);
-        grid-template-rows: repeat(auto-fit , 150px);
+        grid-template-columns: repeat(auto-fit , 175px);
+        grid-template-rows: repeat(auto-fit , 175px);
         grid-row-gap: 25px;
         grid-column-gap: 25px;
     }
+
+    .gallery-view{
+        padding: 0px;
+    }
+
+    .memes-container {
+        grid-template-columns: repeat(auto-fit , minmax(175px , 1fr));
+        grid-column-gap: 15px;
+        grid-row-gap: 10px;
+    }
 }
 
-@media (max-width:400px) {
+@media (max-width:440px) {
     .canvas-container , .edit-tools-container {
         width: 350px;
         height: 350px;
         background-color: #383B42;
         border-radius: 2em;
         margin-top: 20px;
+    }
+
+    .img-gallery{
+        grid-template-columns: repeat(auto-fit , 140px);
+        grid-template-rows: repeat(auto-fit , 140px);
+        grid-row-gap: 25px;
+        grid-column-gap: 25px;
+    }
+
+    .edit-tools-container {
+        height: fit-content;
     }
 }

@@ -10,10 +10,13 @@
 </head>
 
 <body onload="onInit()">
+    <div class="bg-screen" onclick="toggleMenu()"></div>
     <header class="main-header flex space-between">
         <div class="main-header-logo">MEMEoTRON</div>
+        <button class="menu-btn" onclick="toggleMenu()"><img src="ICONS/center-text-alignment.png" alt=""></button>
         <nav class="nav-bar flex">
             <div data-trans="gallery" class="link" onclick="showGallery()"><a href="#">Gallery</a></div>
+            <div data-trans="memes" class="link" onclick="showMemes()"><a href="#">Memes</a></div>
             <div data-trans="lang" class="link" onclick="onSetLang()"><a href="#">עברית</a></div>
         </nav>
     </header>
@@ -73,8 +76,8 @@
                     <option>Gill Sans</option>
                     <option>Courier New</option>
                 </select>
-                <!-- <button class="adjust-btn text-style" onclick="onSaveMeme()"><img src="ICONS/save-icon.svg"
-                        alt=""></button> -->
+                <button class="adjust-btn text-style" onclick="onSaveMeme()"><img src="ICONS/save-icon.svg"
+                        alt=""></button>
                 <!-- <button class="adjust-btn text-color"><img src="ICONS/paint-board-and-brush.png" alt=""></button> -->
             </div>
             <div class="publish-btns editor-layout flex space-between">
@@ -83,23 +86,18 @@
                     <button class="share-btn" data-trans="share">Share</button>
                     <button class="share-container" data-trans="share"></button>
                 </form>
-                <button class="download-btn" data-trans="download">Download</button>
+                <button class="download-btn" data-trans="download"><a href="#" download="my-img.jpg" onclick="onDownloadImg(this)">Download</a></button>
             </div>
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="memes-view hide">
+        <div class="img-gallery-container memes">
+            <div class="memes-container">
+                <div class="meme"><img src="" alt=""></div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/i18n-service.js"></script>
     <script src="js/storage-service.js"></script>

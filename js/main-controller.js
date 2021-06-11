@@ -15,6 +15,7 @@ function onInit() {
     renderCanvas();
     resizeCanvas();
     addListeners();
+    loadMemes()
 }
 function renderCanvas() {
     gElCanvas = document.getElementById('my-canvas');
@@ -236,6 +237,8 @@ function onSetFilter(filterBy) {
 
 function onSetLang() {
     setLang();
+    document.querySelector('.bg-screen').classList.remove('show')
+    document.querySelector('.nav-bar').classList.remove('show')
     if (gCurrLang === 'he') document.body.classList.add('rtl')
     else document.body.classList.remove('rtl')
     doTrans();
@@ -255,10 +258,18 @@ function onSetFilter(filterBy) {
 }
 
 
+function toggleMenu() {
+    document.querySelector('.nav-bar').classList.toggle('show');
+    document.querySelector('.bg-screen').classList.toggle('show');
+}
+
 function showGallery() {
     document.querySelector('.gallery-view').classList.remove('hide');
     document.querySelector('.editor-view').classList.add('hide')
+    document.querySelector('.memes-view').classList.add('hide')
     document.querySelector('.share-container').style.visibility = 'hidden';
+    document.querySelector('.bg-screen').classList.remove('show')
+    document.querySelector('.nav-bar').classList.remove('show')
     gIsUpdating = false;
 }
 function renderImageGallery(imgs) {
@@ -299,7 +310,7 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', dropText);
 }
 
-
+//  DRAG & DROP //
 
 function chooseText(ev) {
     ev.stopPropagation()
@@ -312,7 +323,11 @@ function chooseText(ev) {
     })
 
     if (lineIdx >= 0) gCurrUpdatingIdx = lineIdx;
-    else return;
+    else {                  // deleting the square if clicking on picture
+        drawImg(gCurrImg);
+        setTimeout(drawLines, 1)
+        return;
+    }
     setTextGrab(true);
 
     const pos = getEvPos(ev);
@@ -367,4 +382,38 @@ function getEvPos(ev) {
         }
     }
     return pos
+}
+
+
+//  SAVE MEMES //
+
+function showMemes() {
+    document.querySelector('.editor-view').classList.add('hide');
+    document.querySelector('.gallery-view').classList.add('hide');
+    document.querySelector('.memes-view').classList.remove('hide');
+    document.querySelector('.bg-screen').classList.remove('show')
+    document.querySelector('.nav-bar').classList.remove('show')
+    renderMemes();
+}
+
+function onSaveMeme() {
+    var imgContent = gElCanvas.toDataURL('image/jpeg')
+    gSavedMemes.push(imgContent);
+    saveMemes();
+}
+
+function renderMemes() {
+    var strHTML = gSavedMemes.map((meme) => {
+        return `<div class="meme"><img src="${meme}" alt=""></div>`
+    }).join('');
+    console.log(strHTML);
+    document.querySelector('.memes-container').innerHTML = strHTML;
+}
+
+// DOWNLOAD MEME //
+
+function onDownloadImg(elLink) {
+    var imgContent = gElCanvas.toDataURL('image/png')
+    elLink.href = imgContent
+    setTimeout(setCanvas, 50)
 }
