@@ -91,4 +91,17 @@ function getImgsForDisplay(){
     return imgs
 }
 
+// ___________________________________________________________________________________
 
+function moveText(dx, dy) {
+    gMeme.lines[gCurrUpdatingIdx].posX += dx
+    gMeme.lines[gCurrUpdatingIdx].posY += dy
+    
+    // gMeme.lines[gCurrUpdatingIdx].posX -= gMeme.line[gCurrUpdatingIdx].width/2
+    // gMeme.lines[gCurrUpdatingIdx].posY += dy
+
+}
+
+function setTextGrab(isGrab){
+    gMeme.lines[gCurrUpdatingIdx].isGrab = isGrab;
+}
