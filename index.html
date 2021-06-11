@@ -22,12 +22,15 @@
     </header>
 
     <div class="gallery-view">
-        <div class="gallery-nav-bar flex">
+        <div class="gallery-nav-bar flex space-between">
             <div class="search-input-container flex space-between">
                 <input data-trans="search" type="text" class="search-input" placeholder="search" oninput="onSetFilter(this.value)">
                 <button class="search-btn"><object data="ICONS/search.svg" class="search-icon"
                         fill="green"></object></button>
             </div>
+            <label class="file-input-container flex"><span>Upload Image</span><img src="ICONS/import.png" alt="">
+                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+            </label>
             <div class="filter-options flex space-evenly">
                 <div class="filter-opt" data-trans="funny" onclick="onSetFilter('funny') , biggerFont(this)">Funny</div>
                 <div class="filter-opt" data-trans="animal" onclick="onSetFilter('animal') , biggerFont(this)">Animal</div>

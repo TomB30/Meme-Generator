@@ -271,6 +271,7 @@ function showGallery() {
     document.querySelector('.bg-screen').classList.remove('show')
     document.querySelector('.nav-bar').classList.remove('show')
     gIsUpdating = false;
+    renderImageGallery(gImgs);
 }
 function renderImageGallery(imgs) {
     var strHTML = imgs.map((img) => {
@@ -416,4 +417,33 @@ function onDownloadImg(elLink) {
     var imgContent = gElCanvas.toDataURL('image/png')
     elLink.href = imgContent
     setTimeout(setCanvas, 50)
+}
+
+// LOAD IMAGE FROM COMPUTER //
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderImg)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader()
+
+    reader.onload = function (event) {
+        console.log('event:', event)
+        var img = new Image()
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+
+function renderImg(img) {
+    createNewImg(img);
+    gCurrImg = gImgs[gImgs.length-1].url;
+    document.querySelector('.gallery-view').classList.add('hide');
+    document.querySelector('.editor-view').classList.remove('hide');
+    resizeCanvas();
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
 }

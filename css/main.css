@@ -146,7 +146,7 @@ button:hover {
 
 .search-input-container{
     height: 60px;
-    flex-basis: 50%;
+    flex-grow: 1;
     background-color: #22252C;
     border-radius: 3em;
     margin: 15px;
@@ -155,6 +155,30 @@ button:hover {
     border : 2px solid #20AC91;
     flex-shrink: 10;
     min-width: 200px;
+}
+
+.file-input-container{
+    align-items: center;
+    height: 60px;
+    width: fit-content;
+    margin: 15px;
+    background-color: #22252C;
+    border-radius: 3em;
+    border : 2px solid #20AC91;
+    transition: background-color .3s;
+    font-size: 1.375rem;
+    line-height: 1em;
+    padding: 0 10px;
+}
+.file-input-container:hover{
+    cursor: pointer;
+    background-color:#383B42 ;
+}
+
+.file-input-container img {
+    display: none;
+    height: 35px;
+    width: 35px;
 }
 
 .search-input {
@@ -186,6 +210,10 @@ button:hover {
 
 .search-icon {
     fill: green;
+}
+
+input[type="file"]{
+    display: none;
 }
 
 .filter-opt:hover {
@@ -233,13 +261,12 @@ button:hover {
 }
 
 .filter-options {
-    flex-basis: 50%;
+    flex-grow: 2;
     align-items: center;
     background-color: #87898D;
     margin: 15px;
     border-radius:2em;
-    padding: 0 40px;
-    min-width: 700px;
+    padding: 0 20px;
 }
 
 
@@ -476,9 +503,7 @@ button:hover {
     }
 
     /* GALLERY */
-    .filter-options {
-        min-width: 500px;
-    }
+   
     /* EDITOR */
     .canvas-container , .edit-tools-container {
         width: 450px;
@@ -556,6 +581,12 @@ button:hover {
         padding: 0 15px;
         flex-basis: 100%;
     }
+
+    .file-input-container{
+        height: 50px;
+        padding: 0 15px;
+    }
+
     .filter-options {
         display: none;
     }
@@ -623,7 +654,6 @@ button:hover {
         transform: translateX(0);
     }
 
-
     .canvas-container , .edit-tools-container {
         width: 400px;
         height: 400px;
@@ -670,6 +700,16 @@ button:hover {
         grid-template-columns: repeat(auto-fit , minmax(175px , 1fr));
         grid-column-gap: 15px;
         grid-row-gap: 10px;
+    }
+    .file-input-container {
+        background-color: rgb(66, 66, 66);
+    }
+
+    .file-input-container span {
+        display: none;
+    }
+    .file-input-container img{
+        display: block;
     }
 }
 
