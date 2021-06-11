@@ -391,6 +391,13 @@ input[type="file"]{
     grid-column: span 3;
     border-radius: 0.7em;
 }
+.color-label img{
+    margin-top:3px;
+}
+.color-input {
+    opacity: 0;
+    height: 0;
+}
 
 .stickers-container {
     height: 92px;

@@ -16,6 +16,7 @@ function onInit() {
     resizeCanvas();
     addListeners();
     loadMemes()
+    document.querySelector('.color-input').value = '#ffffff'
 }
 function renderCanvas() {
     gElCanvas = document.getElementById('my-canvas');
@@ -75,11 +76,14 @@ function onAddText() {
         var txt = document.querySelector('.add-text-input').value;
         if (!txt) return;
         var font = document.querySelector('.font-selector').value;
-        createLine(txt, font, 'center', 'black');
+        var color = document.querySelector('.color-input').value;
+        if(!color) color = 'white'
+        createLine(txt, font, 'center', color);
         drawText();
         gCurrUpdatingIdx = gMeme.selectedLineIdx;
     }
     document.querySelector('.add-text-input').value = '';
+    document.querySelector('.color-input').value = '#ffffff'
     gCurrHeight = null;
     dropText();
 }
@@ -93,7 +97,7 @@ function drawText() {
         gCtx.lineWidth = 2
         gCtx.font = `${currText.size}px ${currText.font}`
         gCtx.strokeStyle = 'black'
-        gCtx.fillStyle = 'white'
+        gCtx.fillStyle = currText.color
         gCtx.textAlign = currText.align;
         currText.width = gCtx.measureText(txt).width;
         if (!currText.isGrab) {
@@ -107,7 +111,7 @@ function drawText() {
         gCtx.lineWidth = 2
         gCtx.font = `${currText.size}px ${currText.font}`
         gCtx.strokeStyle = 'black'
-        gCtx.fillStyle = 'white'
+        gCtx.fillStyle = currText.color
         var y = currText.height;
         if (!y) {
             switch (gMeme.selectedLineIdx) {
@@ -180,6 +184,11 @@ function onAlignText(align) {
     if (!gIsUpdating) return;
     alignText(align);
     setCanvas();
+}
+function onColorChange(color){
+    if (!gIsUpdating) return;
+    colorChange(color);
+    setCanvas();  
 }
 function onFontFamilyChange(value) {
     gCurrFont = value

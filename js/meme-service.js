@@ -31,7 +31,7 @@ var gMeme = {
 var gFilter = '';
 var gSavedMemes;
 
-function createLine(txt, font = 'impact', align = 'center', color = 'black', width, posX, posY) {
+function createLine(txt, font = 'impact', align = 'center', color = 'white', width, posX, posY) {
     var line = {
         txt,
         size: 40,
@@ -63,6 +63,10 @@ function textMove(diff) {
     }
     gCurrHeight += (diff * 10);
     gMeme.lines[gCurrUpdatingIdx].height = gCurrHeight;
+}
+
+function colorChange(color){
+    gMeme.lines[gCurrUpdatingIdx].color = color;
 }
 
 function deleteText() {

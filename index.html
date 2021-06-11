@@ -24,7 +24,8 @@
     <div class="gallery-view">
         <div class="gallery-nav-bar flex space-between">
             <div class="search-input-container flex space-between">
-                <input data-trans="search" type="text" class="search-input" placeholder="search" oninput="onSetFilter(this.value)">
+                <input data-trans="search" type="text" class="search-input" placeholder="search"
+                    oninput="onSetFilter(this.value)">
                 <button class="search-btn"><object data="ICONS/search.svg" class="search-icon"
                         fill="green"></object></button>
             </div>
@@ -33,11 +34,13 @@
             </label>
             <div class="filter-options flex space-evenly">
                 <div class="filter-opt" data-trans="funny" onclick="onSetFilter('funny') , biggerFont(this)">Funny</div>
-                <div class="filter-opt" data-trans="animal" onclick="onSetFilter('animal') , biggerFont(this)">Animal</div>
+                <div class="filter-opt" data-trans="animal" onclick="onSetFilter('animal') , biggerFont(this)">Animal
+                </div>
                 <div class="filter-opt" data-trans="men" onclick="onSetFilter('men') , biggerFont(this)">Men</div>
                 <div class="filter-opt" data-trans="kids" onclick="onSetFilter('kids') , biggerFont(this)">kids</div>
                 <div class="filter-opt" data-trans="happy" onclick="onSetFilter('happy') , biggerFont(this)">happy</div>
-                <div class="filter-opt" data-trans="president" onclick="onSetFilter('president') , biggerFont(this)">president</div>
+                <div class="filter-opt" data-trans="president" onclick="onSetFilter('president') , biggerFont(this)">
+                    president</div>
             </div>
         </div>
         <div class="img-gallery-container">
@@ -51,7 +54,8 @@
         </div>
         <div class="edit-tools-container flex space-between column">
             <div class="add-text-container editor-layout flex column">
-                <input type="text" class="add-text-input" data-trans="add-text-here" oninput="updateText()" placeholder="Add Text Here">
+                <input type="text" class="add-text-input" data-trans="add-text-here" oninput="updateText()"
+                    placeholder="Add Text Here">
                 <div class="tools-btn-container flex space-between">
                     <button class="tools-btn switch-focus-btn" onclick="onSwitchText()"><img
                             src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
@@ -72,8 +76,10 @@
                         src="ICONS/center-text-alignment.png" alt=""></button>
                 <button class="adjust-btn text-right" onclick="onAlignText('left')"><img src="ICONS/align-to-right.png"
                         alt=""></button>
-                <button class="adjust-btn text-up" onclick="onTextMove(1)"><img src="ICONS/down-arrow.png" alt=""></button>
-                <button class="adjust-btn text-down" onclick="onTextMove(-1)"><img src="ICONS/up-arrow.png" alt=""></button>
+                <button class="adjust-btn text-up" onclick="onTextMove(1)"><img src="ICONS/down-arrow.png"
+                        alt=""></button>
+                <button class="adjust-btn text-down" onclick="onTextMove(-1)"><img src="ICONS/up-arrow.png"
+                        alt=""></button>
                 <select name="font-select" id="" class="font-selector" onchange="onFontFamilyChange(this.value)">
                     <option>impact</option>
                     <option>Gill Sans</option>
@@ -81,15 +87,20 @@
                 </select>
                 <button class="adjust-btn text-style" onclick="onSaveMeme()"><img src="ICONS/save-icon.svg"
                         alt=""></button>
-                <!-- <button class="adjust-btn text-color"><img src="ICONS/paint-board-and-brush.png" alt=""></button> -->
+                <button class="adjust-btn text-color"><label class="color-label">
+                        <img src="ICONS/paint-board-and-brush.png" alt="">
+                        <input type="color" class="color-input" onchange="onColorChange(this.value)">
+                    </label>
+                </button>
             </div>
             <div class="publish-btns editor-layout flex space-between">
                 <form action="" onsubmit="uploadImg(this, event)" class="publish-form flex space-evenly">
-                    <input name="img" id="imgData" type="hidden"/>
+                    <input name="img" id="imgData" type="hidden" />
                     <button class="share-btn" data-trans="share">Share</button>
                     <button class="share-container" data-trans="share"></button>
                 </form>
-                <button class="download-btn" data-trans="download"><a href="#" download="my-img.jpg" onclick="onDownloadImg(this)">Download</a></button>
+                <button class="download-btn" data-trans="download"><a href="#" download="my-img.jpg"
+                        onclick="onDownloadImg(this)">Download</a></button>
             </div>
         </div>
     </div>
