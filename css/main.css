@@ -24,7 +24,6 @@ body {
     font-size: 1.375rem;
     background-color: #22252C;
     text-align: center;
-    overflow-y: hidden;
 }
 
 a {
@@ -287,6 +286,39 @@ input[type="file"]{
 
 #my-canvas {
     border-radius: 2em;
+}
+
+
+.help-modal {
+    background-color:#20ac90f6 ;
+    width: fit-content;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 5px;
+}
+.x-btn {
+    position: absolute;
+    top: 5;
+    left: 10;
+    background-color: whitesmoke;
+    color: black;
+    padding: 0 5px;
+    border-radius: 5px;
+    border:1px solid black;
+}
+
+.x-btn:hover {
+    cursor: pointer;
+    background-color: rgb(150, 150, 150);
+}
+
+.help-modal h2{
+    margin: 0;
 }
 
 .edit-tools-container {

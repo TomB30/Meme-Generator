@@ -76,9 +76,9 @@
                         src="ICONS/center-text-alignment.png" alt=""></button>
                 <button class="adjust-btn text-right" onclick="onAlignText('left')"><img src="ICONS/align-to-right.png"
                         alt=""></button>
-                <button class="adjust-btn text-up" title="try using arrow up key" onclick="onTextMove(1)"><img src="ICONS/down-arrow.png"
+                <button class="adjust-btn text-up" title="try using arrow-down key" onclick="onTextMove(1)"><img src="ICONS/down-arrow.png"
                         alt=""></button>
-                <button class="adjust-btn text-down" title="try using arrow down key" onclick="onTextMove(-1)"><img src="ICONS/up-arrow.png"
+                <button class="adjust-btn text-down" title="try using arrow-up key" onclick="onTextMove(-1)"><img src="ICONS/up-arrow.png"
                         alt=""></button>
                 <select name="font-select" id="" class="font-selector" onchange="onFontFamilyChange(this.value)">
                     <option>impact</option>
@@ -89,9 +89,10 @@
                         alt=""></button>
                 <button class="adjust-btn text-color"><label class="color-label">
                         <img src="ICONS/paint-board-and-brush.png" alt="">
-                        <input type="color" class="color-input" onchange="onColorChange(this.value)">
+                        <input type="color" class="color-input" oninput="onColorChange(this.value)">
                     </label>
                 </button>
+                <button class="adjust-btn" onclick="toggleModal()"><img src="ICONS/help-sing.png" alt=""></button>
             </div>
             <div class="publish-btns editor-layout flex space-between">
                 <form action="" onsubmit="uploadImg(this, event)" class="publish-form flex space-evenly">
@@ -103,6 +104,20 @@
                         onclick="onDownloadImg(this)">Download</a></button>
             </div>
         </div>
+    </div>
+
+    <div class="help-modal hide">
+        <div class="x-btn" onclick="toggleModal()">X</div>
+        <h2>Try using KeyBoard!</h2>
+        <p>
+            Use Up and Down keys to move the text up and down.
+            <hr>
+            Use Tab key to switch focus between lines.
+            <hr>
+            Use Enter key to finish updating a line or to add a line.
+            <hr>
+            Use Delete key to delete the focused line.
+        </p>
     </div>
 
     <div class="memes-view hide">

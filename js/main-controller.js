@@ -274,6 +274,9 @@ function onSetFilter(filterBy) {
     renderImageGallery(imgsForDisplay);
 }
 
+function toggleModal(){
+    document.querySelector('.help-modal').classList.toggle('hide')
+}
 
 function toggleMenu() {
     document.querySelector('.nav-bar').classList.toggle('show');
