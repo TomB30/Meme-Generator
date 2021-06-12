@@ -274,7 +274,7 @@ function onSetFilter(filterBy) {
     renderImageGallery(imgsForDisplay);
 }
 
-function toggleModal(){
+function toggleModal() {
     document.querySelector('.help-modal').classList.toggle('hide')
 }
 
@@ -391,7 +391,7 @@ function onMove(ev) {
     }
 }
 function dropText() {
-    if(!gMeme.lines.length) return;
+    if (!gMeme.lines.length) return;
     if (!gMeme.lines[gCurrUpdatingIdx].isGrab) {
         onAddText();
         return;
@@ -407,7 +407,7 @@ function dropText() {
 
 
 function getEvPos(ev) {
-    
+
     var pos = {
         x: ev.offsetX,
         y: ev.offsetY
@@ -466,9 +466,16 @@ function renderMemes() {
 // DOWNLOAD MEME //
 
 function onDownloadImg(elLink) {
-    var imgContent = gElCanvas.toDataURL('image/png')
-    elLink.href = imgContent
-    setTimeout(setCanvas, 100)
+    drawImg(gCurrImgUrl);
+    setTimeout(drawLines, 0.3)
+    setTimeout(() => {
+        var imgContent = gElCanvas.toDataURL('image/png')
+        elLink.href = imgContent
+        setTimeout(() => {
+            drawImg(gCurrImgUrl);
+            setTimeout(drawLines, 0.3)
+        }, 100)
+    }, 20)
 }
 
 // LOAD IMAGE FROM COMPUTER //
