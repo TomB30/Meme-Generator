@@ -1,7 +1,4 @@
 'use strict';
-
-var gKeywords = { 'funny': 1, 'animal': 1, 'men': 1, 'women': 1, 'cosmic': 1, 'smile': 1 };
-
 var gImgs;
 
 var gMeme = {
@@ -37,7 +34,6 @@ function setMemeImage(imgId) {
 function fontChange(diff) {
     gMeme.lines[gCurrUpdatingIdx].size += (diff * 2);
 }
-
 function textMove(diff) {
     if (!gCurrHeight) {
         gCurrHeight = gMeme.lines[gCurrUpdatingIdx].height;
@@ -45,27 +41,25 @@ function textMove(diff) {
     gCurrHeight += (diff * 10);
     gMeme.lines[gCurrUpdatingIdx].height = gCurrHeight;
 }
-
 function colorChange(color){
     gMeme.lines[gCurrUpdatingIdx].color = color;
 }
-
 function deleteText() {
     gMeme.lines.splice(gCurrUpdatingIdx, 1);
     if (gCurrUpdatingIdx > 0) gCurrUpdatingIdx--;
 }
-
 function alignText(align) {
     gMeme.lines[gCurrUpdatingIdx].align = align;
 }
-
 function fontFamilyChange() {
     gMeme.lines[gCurrUpdatingIdx].font = gCurrFont;
 }
 
+
 function setFilter(filterBy) {
     gFilter = filterBy;
 }
+
 
 function getImgsForDisplay() {
     var imgs = gImgs.filter((img) => {
@@ -82,7 +76,6 @@ function moveText(dx, dy) {
     gMeme.lines[gCurrUpdatingIdx].posX += dx
     gMeme.lines[gCurrUpdatingIdx].posY += dy
 }
-
 function setTextGrab(isGrab) {
     gMeme.lines[gCurrUpdatingIdx].isGrab = isGrab;
 }
@@ -92,12 +85,10 @@ function setTextGrab(isGrab) {
 function saveMemes() {
     saveToStorage('SavedMemes', gSavedMemes);
 }
-
 function loadMemes() {
     gSavedMemes = loadFromStorage('SavedMemes');
     if (!gSavedMemes) gSavedMemes = [];
 }
-
 function loadImages(){
     gImgs = loadFromStorage('ImagesDB');
     if(!gImgs) gImgs = [

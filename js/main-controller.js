@@ -94,8 +94,6 @@ function onAddText() {
     gCurrHeight = null;
     dropText();
 }
-
-
 function drawText() {
 
     var currText = gMeme.lines[gMeme.selectedLineIdx];
@@ -232,28 +230,6 @@ function updateText() {
 
 function onSetLang() {
     setLang();
-    if (gCurrLang === 'he') document.body.classList.add('rtl')
-    else document.body.classList.remove('rtl')
-    doTrans();
-}
-function doTrans() {
-    var els = document.querySelectorAll('[data-trans]')
-    els.forEach(function (el) {
-        var txt = getTrans(el.dataset.trans)
-        if (el.nodeName === 'INPUT') el.placeholder = txt;
-        else el.innerText = txt
-    })
-}
-function onSetFilter(filterBy) {
-    setFilter(filterBy)
-    var imgsForDisplay = getImgsForDisplay();
-    renderImageGallery(imgsForDisplay);
-}
-
-
-
-function onSetLang() {
-    setLang();
     document.querySelector('.bg-screen').classList.remove('show')
     document.querySelector('.nav-bar').classList.remove('show')
     if (gCurrLang === 'he') document.body.classList.add('rtl')
@@ -274,14 +250,15 @@ function onSetFilter(filterBy) {
     renderImageGallery(imgsForDisplay);
 }
 
+
 function toggleModal() {
     document.querySelector('.help-modal').classList.toggle('hide')
 }
-
 function toggleMenu() {
     document.querySelector('.nav-bar').classList.toggle('show');
     document.querySelector('.bg-screen').classList.toggle('show');
 }
+
 
 function showGallery() {
     document.querySelector('.gallery-view').classList.remove('hide');
@@ -403,9 +380,6 @@ function dropText() {
     }, 3)
     document.querySelector('.add-text-input').focus();
 }
-
-
-
 function getEvPos(ev) {
 
     var pos = {
@@ -423,7 +397,6 @@ function getEvPos(ev) {
     return pos
 }
 
-
 //  SAVE MEMES //
 
 function showMemes() {
@@ -434,7 +407,6 @@ function showMemes() {
     document.querySelector('.nav-bar').classList.remove('show')
     renderMemes();
 }
-
 function onSaveMeme() {
     var imgContent = gElCanvas.toDataURL('image/jpeg')
     gSavedMemes.push(imgContent);
@@ -446,7 +418,6 @@ function onSaveMeme() {
         document.querySelector('.memes-link').style.backgroundColor = '';
     }, 500)
 }
-
 function renderMemes() {
     var strHTML = gSavedMemes.map((meme) => {
         return `<div class="meme"><img src="${meme}" alt=""></div>`
@@ -483,7 +454,6 @@ function onDownloadImg(elLink) {
 function onImgInput(ev) {
     loadImageFromInput(ev, renderImg)
 }
-
 function loadImageFromInput(ev, onImageReady) {
     document.querySelector('.share-container').innerHTML = ''
     var reader = new FileReader()
@@ -496,8 +466,6 @@ function loadImageFromInput(ev, onImageReady) {
     }
     reader.readAsDataURL(ev.target.files[0])
 }
-
-
 function renderImg(img) {
     createNewImg(img);
     gCurrImgUrl = gImgs[gImgs.length - 1].url;
