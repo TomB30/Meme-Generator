@@ -54,6 +54,10 @@ gTrans = {
     'import-image' : {
         en : 'Import Image',
         he : 'ייבוא תמונה'
+    },
+    'bed' : {
+        en : 'Bed',
+        he : 'מיטה'
     }
 }
 
