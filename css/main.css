@@ -56,6 +56,7 @@ button:hover {
     background-color: rgba(41, 39, 39, 0.808);
     opacity: 0;
     pointer-events: none;
+    transition: opacity .3s;
 }
 
 .bg-screen.show{
@@ -459,7 +460,7 @@ input[type="file"]{
 
 .memes-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit , minmax(300px , 1fr));
+    grid-template-columns: repeat(auto-fit , minmax(300px , 500px));
     grid-column-gap: 15px;
     grid-row-gap: 10px;
     height: 100%;
@@ -617,7 +618,7 @@ input[type="file"]{
         padding: 5px 11px;
     }
     .nav-bar {
-        margin-inline-end: 0px;
+        margin-inline-end: 20px;
     }
 }
 
@@ -640,6 +641,7 @@ input[type="file"]{
         transition: transform .3s;
         background-color: #139eabde;
         z-index: 2;
+        margin-inline-end: 0;
     }
     .nav-bar .link {
         padding: 30px 30px;

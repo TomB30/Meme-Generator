@@ -1,13 +1,17 @@
 'use strict';
 var gElCanvas;
 var gCtx;
-var gCurrImg;
+
+var gCurrImgUrl;
 var gCurrUpdatingIdx;
 var gCurrHeight;
+
 var gIsUpdating = false;
-var gCurrFont;
-var gStartPos;
 var gDontGrab = false;
+
+var gCurrFont;
+
+var gStartPos;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
@@ -23,12 +27,14 @@ function renderCanvas() {
     gCtx = gElCanvas.getContext('2d');
 }
 function resizeCanvas() {
+    if(document.querySelector('.editor-view').classList.contains('hide'))return;
     var elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
+    setCanvas();
 }
 function setCanvas() {
-    drawImg(gCurrImg);
+    drawImg(gCurrImgUrl);
     setTimeout(drawLines, 0.3)
     setTimeout(showFocus, 0.3)
 }
@@ -52,7 +58,7 @@ function drawImg(imgUrl) {
 }
 function onSetMemeImage(imgId) {
     var imgUrl = setMemeImage(imgId);
-    gCurrImg = imgUrl;
+    gCurrImgUrl = imgUrl;
     gMeme.lines = [];
     gMeme.selectedLineIdx = 0;
     document.querySelector('.gallery-view').classList.add('hide');
@@ -70,7 +76,7 @@ function onAddText() {
         gIsUpdating = false;
         document.querySelector('.add-text-btn').innerHTML = `<img src="ICONS/add.png"
     alt="">`;
-        drawImg(gCurrImg);
+        drawImg(gCurrImgUrl);
         setTimeout(drawLines, 1)
     } else {
         var txt = document.querySelector('.add-text-input').value;
@@ -158,7 +164,7 @@ function onTextMove(diff) {
 function onDeleteText() {
     if (!gIsUpdating) return;
     deleteText();
-    drawImg(gCurrImg);
+    drawImg(gCurrImgUrl);
     setTimeout(drawLines, 0.3)
     gIsUpdating = false;
     document.querySelector('.add-text-btn').innerHTML = `<img src="ICONS/add.png"
@@ -166,6 +172,7 @@ function onDeleteText() {
     document.querySelector('.add-text-input').value = '';
 }
 function onSwitchText() {
+    if(gMeme.lines.length === 0) return;
     gCurrHeight = null;
     gCurrUpdatingIdx++
     gMeme.selectedLineIdx = gCurrUpdatingIdx;
@@ -198,6 +205,7 @@ function onFontFamilyChange(value) {
 }
 function showFocus() {
     var currText = gMeme.lines[gCurrUpdatingIdx];
+    if(!currText) return;
     gCtx.beginPath()
     var startX = (currText.posX - 5);
     var startY = (currText.posY - currText.size - 5);
@@ -307,6 +315,23 @@ function addListeners() {
             elInput.blur();
             dropText();
         }
+        if(ev.keyCode === 46){
+            if(gIsUpdating){
+                onDeleteText();
+            } 
+        }
+    })
+    window.addEventListener('keyup', (ev) =>{
+        if(ev.keyCode === 9){
+            ev.preventDefault();
+            onSwitchText();
+        }
+        if(ev.keyCode === 38){
+            onTextMove(-1)
+        }
+        if(ev.keyCode === 40){
+            onTextMove(1)
+        }
     })
 }
 function addMouseListeners() {
@@ -334,7 +359,7 @@ function chooseText(ev) {
 
     if (lineIdx >= 0) gCurrUpdatingIdx = lineIdx;
     else {                  // deleting the square if clicking on picture
-        drawImg(gCurrImg);
+        drawImg(gCurrImgUrl);
         setTimeout(drawLines, 1)
         return;
     }
@@ -410,13 +435,18 @@ function onSaveMeme() {
     var imgContent = gElCanvas.toDataURL('image/jpeg')
     gSavedMemes.push(imgContent);
     saveMemes();
+    document.querySelector('.save-btn').style.backgroundColor = '#198754';
+    document.querySelector('.memes-link').style.backgroundColor = '#198754';
+    setTimeout(()=>{
+        document.querySelector('.save-btn').style.backgroundColor = 'white';
+        document.querySelector('.memes-link').style.backgroundColor = '';
+    },500)
 }
 
 function renderMemes() {
     var strHTML = gSavedMemes.map((meme) => {
         return `<div class="meme"><img src="${meme}" alt=""></div>`
     }).join('');
-    console.log(strHTML);
     document.querySelector('.memes-container').innerHTML = strHTML;
 }
 
@@ -425,7 +455,7 @@ function renderMemes() {
 function onDownloadImg(elLink) {
     var imgContent = gElCanvas.toDataURL('image/png')
     elLink.href = imgContent
-    setTimeout(setCanvas, 50)
+    setTimeout(setCanvas, 100)
 }
 
 // LOAD IMAGE FROM COMPUTER //
@@ -450,7 +480,7 @@ function loadImageFromInput(ev, onImageReady) {
 
 function renderImg(img) {
     createNewImg(img);
-    gCurrImg = gImgs[gImgs.length-1].url;
+    gCurrImgUrl = gImgs[gImgs.length-1].url;
     document.querySelector('.gallery-view').classList.add('hide');
     document.querySelector('.editor-view').classList.remove('hide');
     resizeCanvas();

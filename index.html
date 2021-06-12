@@ -16,7 +16,7 @@
         <button class="menu-btn" onclick="toggleMenu()"><img src="ICONS/center-text-alignment.png" alt=""></button>
         <nav class="nav-bar flex">
             <div data-trans="gallery" class="link" onclick="showGallery()"><a href="#">Gallery</a></div>
-            <div data-trans="memes" class="link" onclick="showMemes()"><a href="#">Memes</a></div>
+            <div data-trans="memes" class="link memes-link" onclick="showMemes()"><a href="#">Memes</a></div>
             <div data-trans="lang" class="link" onclick="onSetLang()"><a href="#">עברית</a></div>
         </nav>
     </header>
@@ -29,7 +29,7 @@
                 <button class="search-btn"><object data="ICONS/search.svg" class="search-icon"
                         fill="green"></object></button>
             </div>
-            <label class="file-input-container flex"><span>Upload Image</span><img src="ICONS/import.png" alt="">
+            <label class="file-input-container flex"><span data-trans="import-image">Import Image</span><img src="ICONS/import.png" alt="">
                 <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
             </label>
             <div class="filter-options flex space-evenly">
@@ -57,11 +57,11 @@
                 <input type="text" class="add-text-input" data-trans="add-text-here" oninput="updateText()"
                     placeholder="Add Text Here">
                 <div class="tools-btn-container flex space-between">
-                    <button class="tools-btn switch-focus-btn" onclick="onSwitchText()"><img
+                    <button class="tools-btn switch-focus-btn" title="Try Using Tab key" onclick="onSwitchText()"><img
                             src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
-                    <button class="tools-btn add-text-btn" onclick="onAddText()"><img src="ICONS/add.png"
+                    <button class="tools-btn add-text-btn" title="Try Using Enter key" onclick="onAddText()"><img src="ICONS/add.png"
                             alt=""></button>
-                    <button class="tools-btn delete-text-btn" onclick="onDeleteText()"><img src="ICONS/trash.png"
+                    <button class="tools-btn delete-text-btn" title="Try Using Delete key" onclick="onDeleteText()"><img src="ICONS/trash.png"
                             alt=""></button>
                 </div>
             </div>
@@ -76,16 +76,16 @@
                         src="ICONS/center-text-alignment.png" alt=""></button>
                 <button class="adjust-btn text-right" onclick="onAlignText('left')"><img src="ICONS/align-to-right.png"
                         alt=""></button>
-                <button class="adjust-btn text-up" onclick="onTextMove(1)"><img src="ICONS/down-arrow.png"
+                <button class="adjust-btn text-up" title="try using arrow up key" onclick="onTextMove(1)"><img src="ICONS/down-arrow.png"
                         alt=""></button>
-                <button class="adjust-btn text-down" onclick="onTextMove(-1)"><img src="ICONS/up-arrow.png"
+                <button class="adjust-btn text-down" title="try using arrow down key" onclick="onTextMove(-1)"><img src="ICONS/up-arrow.png"
                         alt=""></button>
                 <select name="font-select" id="" class="font-selector" onchange="onFontFamilyChange(this.value)">
                     <option>impact</option>
                     <option>Gill Sans</option>
                     <option>Courier New</option>
                 </select>
-                <button class="adjust-btn text-style" onclick="onSaveMeme()"><img src="ICONS/save-icon.svg"
+                <button class="adjust-btn save-btn" onclick="onSaveMeme()"><img src="ICONS/save-icon.svg"
                         alt=""></button>
                 <button class="adjust-btn text-color"><label class="color-label">
                         <img src="ICONS/paint-board-and-brush.png" alt="">

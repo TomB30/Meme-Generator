@@ -50,6 +50,10 @@ gTrans = {
     'download' : {
         en : 'Download',
         he : 'הורדה'
+    },
+    'import-image' : {
+        en : 'Import Image',
+        he : 'ייבוא תמונה'
     }
 }
 
