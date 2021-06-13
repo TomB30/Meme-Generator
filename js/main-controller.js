@@ -327,7 +327,7 @@ function chooseText(ev) {
     gIsUpdating = true;
     document.querySelector('.add-text-btn').innerHTML = `<img src="ICONS/check.png" alt="">`
     document.querySelector('.add-text-input').value = gMeme.lines[gMeme.selectedLineIdx].txt;
-    if(window.screen.width > 540){
+    if (window.screen.width > 540) {
         document.querySelector('.add-text-input').focus();
     }
     drawMeme(gCurrImgUrl, true);
@@ -392,8 +392,8 @@ function onSaveMeme() {
     setTimeout(() => {
         var imgContent = gElCanvas.toDataURL('image/jpeg')
         var currMeme = {
-            data : gMeme,
-            url : imgContent
+            data: gMeme,
+            url: imgContent
         }
         gSavedMemes.push(currMeme);
         saveMemes();
@@ -406,7 +406,7 @@ function onSaveMeme() {
     }, 500);
 }
 function renderMemes() {
-    var strHTML = gSavedMemes.map((meme,idx) => {
+    var strHTML = gSavedMemes.map((meme, idx) => {
         return `<div class="meme" onclick="editMeme('${idx}')"><img src="${meme.url}" alt=""></div>`
     }).join('');
     if (!gSavedMemes.length) {
@@ -421,11 +421,11 @@ function renderMemes() {
     document.querySelector('.memes-container').innerHTML = strHTML;
 }
 
-function editMeme(memeIdx){
+function editMeme(memeIdx) {
     gMeme = gSavedMemes[memeIdx].data;
     document.querySelector('.memes-view').classList.add('hide');
     document.querySelector('.editor-view').classList.remove('hide');
-    drawMeme(gImgs[gMeme.selectedImgId-1].url);
+    drawMeme(gImgs[gMeme.selectedImgId - 1].url);
 }
 
 // DOWNLOAD MEME //
@@ -466,6 +466,32 @@ function renderImg(img) {
 
 //  Menu Button //
 
-function toggleBtn(){
+function toggleBtn() {
     document.querySelector('#nav-icon1').classList.toggle('open');
 }
+
+// Web Share API //
+
+async function shareCanvas() {
+    var imgContent = gElCanvas.toDataURL('image/jpeg')
+    fetch(imgContent)
+        .then(function (response) {
+            return response.blob()
+        })
+        .then(function (blob) {
+
+            var file = new File([blob], "meme.jpeg", { type: 'image/jpeg' });
+            var filesArray = [file];
+
+            if (navigator.canShare && navigator.canShare({ files: filesArray })) {
+                navigator.share({
+                    text: 'some_text',
+                    files: filesArray,
+                    title: 'some_title',
+                    url: 'some_url'
+                });
+            }
+        }
+        )
+}
+

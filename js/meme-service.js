@@ -57,7 +57,7 @@ function fontFamilyChange() {
 
 
 function setFilter(filterBy) {
-    gFilter = filterBy;
+    gFilter = filterBy.toLowerCase();
 }
 
 
