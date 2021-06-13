@@ -211,6 +211,7 @@ function onSetLang() {
     document.querySelector('.nav-bar').classList.remove('show')
     if (gCurrLang === 'he') document.body.classList.add('rtl')
     else document.body.classList.remove('rtl')
+    document.querySelector('#nav-icon1').classList.remove('open');
     doTrans();
 }
 function doTrans() {
@@ -245,6 +246,7 @@ function showGallery() {
     document.querySelector('.bg-screen').classList.remove('show');
     document.querySelector('.nav-bar').classList.remove('show');
     document.querySelector('body').classList.add('overflow-hidden');
+    document.querySelector('#nav-icon1').classList.remove('open');
     gIsUpdating = false;
     renderImgGallery(gImgs);
 }
@@ -385,6 +387,7 @@ function showMemes() {
     document.querySelector('.bg-screen').classList.remove('show')
     document.querySelector('.nav-bar').classList.remove('show')
     document.querySelector('body').classList.add('overflow-hidden');
+    document.querySelector('#nav-icon1').classList.remove('open');
     renderMemes();
 }
 function onSaveMeme() {
@@ -469,29 +472,3 @@ function renderImg(img) {
 function toggleBtn() {
     document.querySelector('#nav-icon1').classList.toggle('open');
 }
-
-// Web Share API //
-
-async function shareCanvas() {
-    var imgContent = gElCanvas.toDataURL('image/jpeg')
-    fetch(imgContent)
-        .then(function (response) {
-            return response.blob()
-        })
-        .then(function (blob) {
-
-            var file = new File([blob], "meme.jpeg", { type: 'image/jpeg' });
-            var filesArray = [file];
-
-            if (navigator.canShare && navigator.canShare({ files: filesArray })) {
-                navigator.share({
-                    text: 'some_text',
-                    files: filesArray,
-                    title: 'some_title',
-                    url: 'some_url'
-                });
-            }
-        }
-        )
-}
-
