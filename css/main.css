@@ -446,6 +446,15 @@ input[type="file"]{
     box-shadow: inset 0px -4px 0px 0px #1760a5;
 }
 
+.download-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    
+}
+
 .share-btn:hover {
     background-color: #155794;
     color: white;
