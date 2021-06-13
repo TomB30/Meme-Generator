@@ -7,11 +7,7 @@ function uploadImg(elForm, ev) {
     // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
         uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        document.querySelector('.share-container').innerHTML = `
-        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-           Share   
-        </a>`
-        document.querySelector('.share-container').style.visibility = 'visible'
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`,'_blank')
     }
     let inputVal = document.querySelector('#imgData').value
     doUploadImg(elForm, onSuccess, inputVal);

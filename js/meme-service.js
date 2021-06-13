@@ -25,34 +25,34 @@ function createLine(txt, font = 'impact', align = 'center', color = 'white', wid
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
-function setMemeImage(imgId) {
+function setMemeImg(imgId) {
     var img = gImgs.find((img) => img.id === imgId);
     gMeme.selectedImgId = img.id;
     return img.url;
 }
 
 function fontChange(diff) {
-    gMeme.lines[gCurrUpdatingIdx].size += (diff * 2);
+    gMeme.lines[gMeme.selectedLineIdx].size += (diff * 2);
 }
 function textMove(diff) {
     if (!gCurrHeight) {
-        gCurrHeight = gMeme.lines[gCurrUpdatingIdx].height;
+        gCurrHeight = gMeme.lines[gMeme.selectedLineIdx].height;
     }
     gCurrHeight += (diff * 10);
-    gMeme.lines[gCurrUpdatingIdx].height = gCurrHeight;
+    gMeme.lines[gMeme.selectedLineIdx].height = gCurrHeight;
 }
 function colorChange(color){
-    gMeme.lines[gCurrUpdatingIdx].color = color;
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
 function deleteText() {
-    gMeme.lines.splice(gCurrUpdatingIdx, 1);
-    if (gCurrUpdatingIdx > 0) gCurrUpdatingIdx--;
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    if (gMeme.selectedLineIdx > 0) gMeme.selectedLineIdx--;
 }
 function alignText(align) {
-    gMeme.lines[gCurrUpdatingIdx].align = align;
+    gMeme.lines[gMeme.selectedLineIdx].align = align;
 }
 function fontFamilyChange() {
-    gMeme.lines[gCurrUpdatingIdx].font = gCurrFont;
+    gMeme.lines[gMeme.selectedLineIdx].font = gCurrFont;
 }
 
 
@@ -73,11 +73,11 @@ function getImgsForDisplay() {
 // DRAG & DROP //
 
 function moveText(dx, dy) {
-    gMeme.lines[gCurrUpdatingIdx].posX += dx
-    gMeme.lines[gCurrUpdatingIdx].posY += dy
+    gMeme.lines[gMeme.selectedLineIdx].posX += dx
+    gMeme.lines[gMeme.selectedLineIdx].posY += dy
 }
 function setTextGrab(isGrab) {
-    gMeme.lines[gCurrUpdatingIdx].isGrab = isGrab;
+    gMeme.lines[gMeme.selectedLineIdx].isGrab = isGrab;
 }
 
 // SAVE MEMES //
@@ -89,8 +89,8 @@ function loadMemes() {
     gSavedMemes = loadFromStorage('SavedMemes');
     if (!gSavedMemes) gSavedMemes = [];
 }
-function loadImages(){
-    gImgs = loadFromStorage('ImagesDB');
+function loadImgs(){
+    gImgs = loadFromStorage('ImgsDB');
     if(!gImgs) gImgs = [
         { id: 1, url: 'meme-imgs (square)/1.jpg', keywords: ['ugly', 'trump', 'funny', 'president'] },
         { id: 2, url: 'meme-imgs (square)/2.jpg', keywords: ['happy', 'animal', 'love'] },
@@ -123,5 +123,5 @@ function createNewImg(img) {
         keywords: ['happy']
     }
     gImgs.push(newImg);
-    saveToStorage('ImagesDB' , gImgs)
+    saveToStorage('ImgsDB' , gImgs)
 }

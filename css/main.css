@@ -1,3 +1,4 @@
+@import url(menu-btn.css);
 
 @font-face {
     font-family: poppins-light;
@@ -24,6 +25,10 @@ body {
     font-size: 1.375rem;
     background-color: #22252C;
     text-align: center;
+}
+
+.overflow-hidden {
+    overflow-y: hidden;
 }
 
 a {
@@ -63,29 +68,20 @@ button:hover {
 }
 
 ::-webkit-scrollbar {
-    width: 34px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #22252C; 
-    border:10px solid #383B42;
-    margin: 10px 0px;
-    border-radius: 1em;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #1AA69D;
-    border-left:10px solid #383B42;
-    border-right:10px solid #383B42;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #1aa68f; 
-
-  }
+    width: 14px;
+    height: 14px;
+   }
+   ::-webkit-scrollbar-thumb {
+    background: linear-gradient(52deg, #30bb73 43%,#0f9bb3 64%);
+    border-radius: 15px;
+   }
+   ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(13deg, #0f9bb3 14%,#30bb73 64%);
+   }
+   ::-webkit-scrollbar-track{
+    background: #22252c;
+    border-radius: 15px;
+   }
 /* HEADER */
 
 .main-header {
@@ -124,21 +120,6 @@ button:hover {
 
 .link:hover a {
     color : #30BB73;
-}
-
-.menu-btn {
-    height: 40px;
-    width: 40px;
-    margin-right: 10px ;
-    border:none;
-    border-radius: 5px;
-    transition: background-color .2s;
-    display: none;
-    z-index: 2;
-}
-
-.menu-btn:hover {
-    background-color: rgb(139, 139, 139);
 }
 
 /* CONTENT - GALLERY VIEW */
@@ -418,10 +399,8 @@ input[type="file"]{
 .font-selector {
     padding-inline-start: 1rem ;
     font-size: 1.5rem;
-    height: 55px;
     width:100% ;
     grid-column: span 3;
-    border-radius: 0.7em;
 }
 .color-label img{
     margin-top:3px;
@@ -574,7 +553,7 @@ input[type="file"]{
         width: 45px;
     }
     .font-selector{
-        height: 45px;
+        width: 100%;
     }
 
     .publish-btns button {
@@ -657,10 +636,6 @@ input[type="file"]{
 
     .main-header{
         border-radius:0px;
-    }
-
-    .menu-btn {
-        display: block;
     }
 
     .nav-bar {
