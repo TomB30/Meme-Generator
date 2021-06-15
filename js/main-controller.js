@@ -436,7 +436,7 @@ function editMeme(memeIdx) {
 function onDownloadImg(elLink) {
     drawMeme(gCurrImgUrl, false);
     var imgContent = gElCanvas.toDataURL('image/jpeg')
-    elLink.href = imgContent
+    elLink.href = imgContent 
     drawMeme(gCurrImgUrl, false);
 
 }
